@@ -10,8 +10,8 @@
 ; AutoIt3Wrapper
 #AutoIt3Wrapper_Res_ProductName=OJP
 #AutoIt3Wrapper_Res_Description=Permet d'enregistrer la liasse d'ouverture d'une journée PROGRES en pdf sur un serveur partagé
-#AutoIt3Wrapper_Res_ProductVersion=1.0.3
-#AutoIt3Wrapper_Res_FileVersion=1.0.3
+#AutoIt3Wrapper_Res_ProductVersion=1.0.4
+#AutoIt3Wrapper_Res_FileVersion=1.0.4
 #AutoIt3Wrapper_Res_CompanyName=CNAMTS/CPAM_ARTOIS/APPLINAT
 #AutoIt3Wrapper_Res_LegalCopyright=yann.daniel@assurance-maladie.fr
 #AutoIt3Wrapper_Res_Language=1036
@@ -25,9 +25,9 @@
 #AutoIt3Wrapper_AU3Check_Parameters=-q -d -w 1 -w 2 -w 3 -w 4 -w 5 -w 6 -w 7
 #AutoIt3Wrapper_AU3Check_Stop_OnWarning=Y
 ; Includes YD
-#include <YDGVars.au3>
-#include <YDLogger.au3>
-#include <YDTool.au3>
+#include "D:\Autoit_dev\Include\YDGVars.au3"
+#include "D:\Autoit_dev\Include\YDLogger.au3"
+#include "D:\Autoit_dev\Include\YDTool.au3"
 ; Includes Constants
 #include <StaticConstants.au3>
 #Include <WindowsConstants.au3>
@@ -244,7 +244,7 @@ Func _GetUGEFromNticLogFile()
 	Local $sUGE = "0000"
 	; On ne fait des recherches que si PROGRES est lance
 	If ProcessExists(_YDGVars_Get("sAppProgresExeName")) Then
-		If FileExists(_YDGVars_Get("sAppProgresNticLogFile") = 0 Then
+		If FileExists(_YDGVars_Get("sAppProgresNticLogFile")) = 0 Then
 			_YDLogger_Log("Fichier non present : " & $hLogFile, $sFuncName)
 			Return False
 		EndIf

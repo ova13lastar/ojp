@@ -245,7 +245,7 @@ Func _GetUGEFromNticLogFile()
 	; On ne fait des recherches que si PROGRES est lance
 	If ProcessExists(_YDGVars_Get("sAppProgresExeName")) Then
 		If FileExists(_YDGVars_Get("sAppProgresNticLogFile")) = 0 Then
-			_YDLogger_Log("Fichier non present : " & $hLogFile, $sFuncName)
+			_YDLogger_Log("Fichier non present : " & _YDGVars_Get("sAppProgresNticLogFile"), $sFuncName)
 			Return False
 		EndIf
 		$hLogFile = FileOpen(_YDGVars_Get("sAppProgresNticLogFile"), 0)

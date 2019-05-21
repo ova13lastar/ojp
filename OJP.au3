@@ -10,8 +10,8 @@
 ; AutoIt3Wrapper
 #AutoIt3Wrapper_Res_ProductName=OJP
 #AutoIt3Wrapper_Res_Description=Permet d'enregistrer la liasse d'ouverture d'une journée PROGRES en pdf sur un serveur partagé
-#AutoIt3Wrapper_Res_ProductVersion=1.0.4
-#AutoIt3Wrapper_Res_FileVersion=1.0.4
+#AutoIt3Wrapper_Res_ProductVersion=1.0.5
+#AutoIt3Wrapper_Res_FileVersion=1.0.5
 #AutoIt3Wrapper_Res_CompanyName=CNAMTS/CPAM_ARTOIS/APPLINAT
 #AutoIt3Wrapper_Res_LegalCopyright=yann.daniel@assurance-maladie.fr
 #AutoIt3Wrapper_Res_Language=1036
@@ -95,7 +95,7 @@ Global $g_sProgresOuvertureLensPath = _YDTool_GetAppConfValue("progres", "progre
 ; On recupere d autres variables globales
 Global $g_sDefaultPrinter = _YDTool_GetDefaultPrinter(@ComputerName)
 _YDLogger_Var("$g_sDefaultPrinter", $g_sDefaultPrinter)
-Global $g_sDefaultPrinterName = StringReplace($g_sDefaultPrinter, "\\w11620101rps001\", "")
+Global $g_sDefaultPrinterName = StringRegExpReplace($g_sDefaultPrinter, "(?i)\\\\w11620101rps(\d{3})\\", "")
 _YDLogger_Var("$g_sDefaultPrinterName", $g_sDefaultPrinterName)
 Global $g_sSite = _YDTool_GetHostSite(@ComputerName)
 _YDLogger_Var("$g_sSite", $g_sSite)
@@ -149,7 +149,7 @@ Func _Main()
 			Sleep(100)
 		WEnd
 		_YDTool_SetTrayTip(_YDGVars_Get("sAppTitle"), "Bascule vers imprimante : " & $g_sPdfCreatorPrinter, 5000)
-		; On attend que la fenetre d'ouvertture progres soit fermee
+		; On attend que la fenetre d'ouverture progres soit fermee
 		WinWaitClose(_YDGVars_Get("sAppProgresOuvertureTitle"))
 		_YDLogger_Log("Fenetre ouverture PROGRES : fermee", $sFuncName)
 		; Tant que PROGRES existe, on verifie que l'UGE du NTIC_xxxx.LOG soit egale à la nouvelle UGE
